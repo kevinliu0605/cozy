@@ -1,65 +1,125 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import {
-  Form,
-  Input,
-  InputNumber,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-} from "antd";
+import { Form, Input, Cascader, Select, Checkbox, Button } from "antd";
 const { Option } = Select;
 
-const config = {
-  rules: [
-    {
-      type: "object",
-      required: true,
-      message: "Please select time!",
-    },
-  ],
-};
-const rangeConfig = {
-  rules: [
-    {
-      type: "array",
-      required: true,
-      message: "Please select time!",
-    },
-  ],
-};
+// dummy data for resident
 const residences = [
   {
-    value: "zhejiang",
-    label: "Zhejiang",
+    value: "unit1",
+    label: "Unit 1",
     children: [
       {
-        value: "hangzhou",
-        label: "Hangzhou",
+        value: "floor1",
+        label: "Floor 1",
         children: [
           {
-            value: "xihu",
-            label: "West Lake",
+            value: "apt100",
+            label: "APT 100",
+          },
+          {
+            value: "apt101",
+            label: "APT 101",
+          },
+          {
+            value: "apt102",
+            label: "APT 102",
+          },
+        ],
+      },
+      {
+        value: "floor2",
+        label: "Floor 2",
+        children: [
+          {
+            value: "apt200",
+            label: "APT 200",
+          },
+          {
+            value: "apt201",
+            label: "APT 201",
+          },
+          {
+            value: "apt202",
+            label: "APT 202",
+          },
+        ],
+      },
+      {
+        value: "floor3",
+        label: "Floor 3",
+        children: [
+          {
+            value: "apt300",
+            label: "APT 300",
+          },
+          {
+            value: "apt301",
+            label: "APT 301",
+          },
+          {
+            value: "apt302",
+            label: "APT 302",
           },
         ],
       },
     ],
   },
   {
-    value: "jiangsu",
-    label: "Jiangsu",
+    value: "unit2",
+    label: "Unit 2",
     children: [
       {
-        value: "nanjing",
-        label: "Nanjing",
+        value: "floor1",
+        label: "Floor 1",
         children: [
           {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
+            value: "apt100",
+            label: "APT 100",
+          },
+          {
+            value: "apt101",
+            label: "APT 101",
+          },
+          {
+            value: "apt102",
+            label: "APT 102",
+          },
+        ],
+      },
+      {
+        value: "floor2",
+        label: "Floor 2",
+        children: [
+          {
+            value: "apt200",
+            label: "APT 200",
+          },
+          {
+            value: "apt201",
+            label: "APT 201",
+          },
+          {
+            value: "apt202",
+            label: "APT 202",
+          },
+        ],
+      },
+      {
+        value: "floor3",
+        label: "Floor 3",
+        children: [
+          {
+            value: "apt300",
+            label: "APT 300",
+          },
+          {
+            value: "apt301",
+            label: "APT 301",
+          },
+          {
+            value: "apt302",
+            label: "APT 302",
           },
         ],
       },
@@ -104,6 +164,7 @@ const CreateForm = (props) => {
     console.log("Received values of form: ", values);
   };
 
+  //   phone number prefix selector
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>
       <Select
@@ -111,20 +172,8 @@ const CreateForm = (props) => {
           width: 70,
         }}
       >
+        <Option value="1">+1</Option>
         <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
-  const suffixSelector = (
-    <Form.Item name="suffix" noStyle>
-      <Select
-        style={{
-          width: 70,
-        }}
-      >
-        <Option value="USD">$</Option>
-        <Option value="CNY">¥</Option>
       </Select>
     </Form.Item>
   );
@@ -140,10 +189,6 @@ const CreateForm = (props) => {
     }
   };
 
-  const websiteOptions = autoCompleteResult.map((website) => ({
-    label: website,
-    value: website,
-  }));
   return (
     <Form
       {...formItemLayout}
@@ -151,8 +196,8 @@ const CreateForm = (props) => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
-        prefix: "86",
+        residence: ["Unit 1", "Floor 2", "APT 202"],
+        prefix: "+1",
       }}
       scrollToFirstError
     >
